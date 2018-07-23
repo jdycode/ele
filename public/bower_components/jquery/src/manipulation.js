@@ -99,7 +99,7 @@ function cloneCopyEvent( src, dest ) {
 		}
 	}
 
-	// 2. Copy admin data
+	// 2. Copy user data
 	if ( dataUser.hasData( src ) ) {
 		udataOld = dataUser.access( src );
 		udataCur = jQuery.extend( {}, udataOld );

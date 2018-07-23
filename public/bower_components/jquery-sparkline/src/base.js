@@ -298,7 +298,7 @@
             showFields = this.options.get('tooltipFormatFieldlist');
             showFieldsKey = this.options.get('tooltipFormatFieldlistKey');
             if (showFields && showFieldsKey) {
-                // admin-selected ordering of fields
+                // user-selected ordering of fields
                 newFields = [];
                 for (i = fields.length; i--;) {
                     fv = fields[i][showFieldsKey];

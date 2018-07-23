@@ -4,7 +4,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\ShopCategory;
-use App\Models\Shops;
+use App\Models\Shop;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,16 +12,17 @@ class ShopsController extends Controller
 {
     public function index()
     {
-        $cate=ShopCategory::all();
-        $shops=Shops::all();
-        return view('admin.shops.index',compact('shops','cate'));
-     }
-/*
- * 添加
- */
+        $cate = ShopCategory::all();
+        $shops = Shop::all();
+        return view('admin.shops.index', compact('shops', 'cate'));
+    }
+
+    /*
+     * 添加
+     */
     public function add(Request $request)
     {
-        $cates=ShopCategory::all();
+        $cates = ShopCategory::all();
         //判断是不是post提交
         if ($request->isMethod('post')) {
 
@@ -52,7 +53,7 @@ class ShopsController extends Controller
             }
 
             //插入数据
-            Shops::create($data);
+            Shop::create($data);
             //提示信息
             $request->session()->flash('success', '添加成功');
             //跳转
@@ -61,16 +62,17 @@ class ShopsController extends Controller
         //显示视图
         return view('admin.shops.add', compact('cates'));
     }
-/*
- * 编辑
- */
+
+    /*
+     * 编辑
+     */
     public function edit(Request $request, $id)
     {
-        $cates=ShopCategory::all();
+        $cates = ShopCategory::all();
         //通过id找到对象
-        $shops = Shops::find($id);
+        $shops = Shop::findOrFail($id);
         //在data里面追加图片
-        $data['img'] = $shops ->shop_img;
+        $data['img'] = $shops->shop_img;
         //判断是不是post提交
         if ($request->isMethod('post')) {
             //验证
@@ -105,13 +107,14 @@ class ShopsController extends Controller
             return redirect()->route('shops.index');
         }
         //显示视图
-        return view('admin.shops.edit', compact('shops','cates'));
+        return view('admin.shops.edit', compact('shops', 'cates'));
     }
 
-    public function del(Request $request,$id)
+    public function del(Request $request, $id)
     {
         //通过id找到对象
-        $shops = Shops::find($id);
+        $shops = Shop::findOrFail($id);
+
         //删除数据
         $shops->delete();
         //提示信息
@@ -120,4 +123,23 @@ class ShopsController extends Controller
         return redirect()->route('shops.index');
     }
 
+    //通过审核
+    public function on($id)
+    {
+        $shop = Shop::findOrFail($id);
+        $shop->status = 1;
+        $shop->save();
+        //session()->flash("success","通过审核");
+        return back()->with("success", "通过审核");
     }
+
+    //通过审核
+    public function off($id)
+    {
+        $shop = Shop::findOrFail($id);
+        $shop->status = -1;
+        $shop->save();
+        //session()->flash("success","通过审核");
+        return back()->with("success", "禁用");
+    }
+}

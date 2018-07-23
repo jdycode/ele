@@ -27,15 +27,15 @@
             <li class="header">MAIN NAVIGATION</li>
             <li class="active treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>商家分类管理</span>
+                    <i class="fa fa-dashboard"></i> <span>Admin管理</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{route('shop_category.index')}}"><i class="fa fa-circle-o"></i>商家分类</a></li>
-                    <li><a href="{{route('shops.index')}}"><i class="fa fa-circle-o"></i> 信息管理</a></li>
-                    <li><a href="index2.html"><i class="fa fa-circle-o"></i> 帐号管理</a></li>
+                    <li class="active"><a href="{{route('shop_category.index')}}"><i class="fa fa-circle-o"></i>商家分类管理</a></li>
+                    <li><a href="{{route('shops.index')}}"><i class="fa fa-circle-o"></i> 商家信息管理</a></li>
+                    <li><a href="{{route('admin.index')}}"><i class="fa fa-circle-o"></i> Admin帐号管理</a></li>
                 </ul>
             </li>
             <li class="treeview">

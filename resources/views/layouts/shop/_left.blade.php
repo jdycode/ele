@@ -1,7 +1,7 @@
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <!-- Sidebar admin panel -->
+        <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
                 <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
@@ -33,9 +33,9 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{route('shop_category.index')}}"><i class="fa fa-circle-o"></i>商家分类</a></li>
-                    <li><a href="{{route('shops.index')}}"><i class="fa fa-circle-o"></i> 信息管理</a></li>
-                    <li><a href="index2.html"><i class="fa fa-circle-o"></i> 帐号管理</a></li>
+                    <li class="active"><a href="#"><i class="fa fa-circle-o"></i>商家分类</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> 信息管理</a></li>
+                    <li><a href="{{route('user.index')}}"><i class="fa fa-circle-o"></i> 商家帐号管理</a></li>
                 </ul>
             </li>
             <li class="treeview">

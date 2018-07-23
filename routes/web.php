@@ -28,15 +28,25 @@ Route::domain('admin.com')->namespace('Admin')->group(function () {
     Route::any('shops/add',"ShopsController@add")->name('shops.add');
     Route::any('shops/edit/{id}',"ShopsController@edit")->name('shops.edit');
     Route::any('shops/del/{id}',"ShopsController@del")->name('shops.del');
+    Route::any('shops/on/{id}',"ShopsController@on")->name('shops.on');
+    Route::any('shops/off/{id}',"ShopsController@off")->name('shops.off');
+
+    //admin表
+    Route::any('admin/reg',"AdminController@reg")->name('admin.reg');
+    Route::any('admin/login',"AdminController@login")->name('admin.login');
+    Route::any('admin/index',"AdminController@index")->name('admin.index');
+    Route::any('admin/edit/{id}',"AdminController@edit")->name('admin.edit');
+    Route::any('admin/logout',"AdminController@logout")->name('admin.logout');
+
     });
 
 
 //商户
 Route::domain('shop.com')->namespace('Shop')->group(function () {
-    Route::any('admin/reg',"AdminController@reg")->name('admin.reg');
-    Route::any('admin/login',"AdminController@login")->name('admin.login');
-    Route::any('admin/index',"AdminController@index")->name('admin.index');
-    Route::any('admin/edit/{id}',"AdminController@edit")->name('admin.edit');
-    Route::any('admin/del/{id}',"AdminController@del")->name('admin.del');
-    Route::any('admin/logout',"AdminController@logout")->name('admin.logout');
+    Route::any('user/reg',"UserController@reg")->name('user.reg');
+    Route::any('user/login',"UserController@login")->name('user.login');
+    Route::any('user/index',"UserController@index")->name('user.index');
+    Route::any('user/edit/{id}',"UserController@edit")->name('user.edit');
+    Route::any('user/del/{id}',"UserController@del")->name('user.del');
+    Route::any('user/logout',"UserController@logout")->name('user.logout');
 });

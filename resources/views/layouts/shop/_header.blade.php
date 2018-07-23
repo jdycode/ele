@@ -235,10 +235,10 @@
                                     <a href="{{route('admin.reg')}}">注册</a>
                                 </div>
                                 <div class="col-xs-4 text-center">
-                                    <a href="{{route('admin.login')}}">登录</a>
+                                    <a href="{{route('user')}}">登录</a>
                                 </div>
                                 <div class="col-xs-4 text-center">
-                                    <a href="{{route('admin.logout')}}">注销</a>
+                                    <a href="{{route('user')}}">注销</a>
                                 </div>
                             </div>
                             <!-- /.row -->
