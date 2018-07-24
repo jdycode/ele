@@ -7,7 +7,10 @@
                 <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>管理员</p>
+                @auth
+                    <p>{{\Illuminate\Support\Facades\Auth::guard()->user()->name}} </p>
+                @endauth
+               {{--<p>管理员</p>--}}
                 <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
             </div>
         </div>
@@ -24,18 +27,35 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">List-info</li>
             <li class="active treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>商家分类管理</span>
+                    <i class="fa fa-dashboard"></i> <span>商家管理</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="#"><i class="fa fa-circle-o"></i>商家分类</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> 信息管理</a></li>
+                    {{--<li class="active"><a href="#"><i class="fa fa-circle-o"></i>商家分类</a>--}}
+                    {{--</li>--}}
+                    {{--<li><a href="#"><i class="fa fa-circle-o"></i> 信息管理</a>--}}
+                    {{--</li>--}}
                     <li><a href="{{route('user.index')}}"><i class="fa fa-circle-o"></i> 商家帐号管理</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>菜品管理</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('menu_cate.index')}}"><i class="fa fa-circle-o"></i> 菜品分类</a></li>
+                    <li><a href="{{route('menu.index')}}"><i class="fa fa-circle-o"></i> 菜品信息</a></li>
+                    {{--<li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>--}}
+                    {{--<li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>--}}
                 </ul>
             </li>
             <li class="treeview">
@@ -61,21 +81,7 @@
             </span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-pie-chart"></i>
-                    <span>排行榜</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-                </ul>
-            </li>
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-laptop"></i>

@@ -32,7 +32,7 @@
                 @endif
                 <td>
                     <a href="{{route('shop_category.edit',$cate)}}" class="btn btn-success">编辑</a>
-                    <a href="{{route('shop_category.del',$cate)}}" class="btn btn-danger">删除</a>
+                    <a href="{{route('shop_category.del',$cate)}}" class="btn btn-danger" onclick="return confirm('确定要删除这条数据吗？')">删除</a>
                 </td>
             </tr>
         @endforeach

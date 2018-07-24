@@ -13585,7 +13585,7 @@ var MouseFollower = /** @class */ (function () {
                 opacity: this.options.opacity || '',
                 zIndex: this.options.zIndex
             });
-            // we don't want long taps or any mouse interaction causing selection/menus.
+            // we don't want long taps or any mouse interaction causing selection/menu.
             // would use preventSelection(), but that prevents selectstart, causing problems.
             el.addClass('fc-unselectable');
             el.appendTo(this.parentEl);

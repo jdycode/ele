@@ -57,7 +57,7 @@ class UserController extends Controller
                     'name' => $request->input('name'),
                     'email' => $request->input('email'),
                     'password' => bcrypt($request->input('password')),
-                    'status'=>1
+                    'status'=>0
                 ]);
             });
 

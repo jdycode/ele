@@ -36,6 +36,7 @@ Route::domain('admin.com')->namespace('Admin')->group(function () {
     Route::any('admin/login',"AdminController@login")->name('admin.login');
     Route::any('admin/index',"AdminController@index")->name('admin.index');
     Route::any('admin/edit/{id}',"AdminController@edit")->name('admin.edit');
+    Route::any('admin/del/{id}',"AdminController@del")->name('admin.del');
     Route::any('admin/logout',"AdminController@logout")->name('admin.logout');
 
     });
@@ -43,10 +44,27 @@ Route::domain('admin.com')->namespace('Admin')->group(function () {
 
 //商户
 Route::domain('shop.com')->namespace('Shop')->group(function () {
+
+    //user表
     Route::any('user/reg',"UserController@reg")->name('user.reg');
     Route::any('user/login',"UserController@login")->name('user.login');
     Route::any('user/index',"UserController@index")->name('user.index');
     Route::any('user/edit/{id}',"UserController@edit")->name('user.edit');
     Route::any('user/del/{id}',"UserController@del")->name('user.del');
     Route::any('user/logout',"UserController@logout")->name('user.logout');
+
+    //菜品分类表 menu_categories
+    Route::any('menu_cate/index',"MenuCategoryController@index")->name('menu_cate.index');
+    Route::any('menu_cate/add',"MenuCategoryController@add")->name('menu_cate.add');
+    Route::any('menu_cate/edit/{id}',"MenuCategoryController@edit")->name('menu_cate.edit');
+    Route::any('menu_cate/del/{id}',"MenuCategoryController@del")->name('menu_cate.del');
+
+//菜品信息表 menu
+    Route::any('menu/index',"MenuController@index")->name('menu.index');
+    Route::any('menu/add',"MenuController@add")->name('menu.add');
+    Route::any('menu/edit/{id}',"MenuController@edit")->name('menu.edit');
+    Route::any('menu/del/{id}',"MenuController@del")->name('menu.del');
+
+
+
 });

@@ -51,7 +51,7 @@ return $.widget( "ui.menu", {
 		this.activeMenu = this.element;
 
 		// Flag used to prevent firing of the click handler
-		// as the event bubbles up through nested menus
+		// as the event bubbles up through nested menu
 		this.mouseHandled = false;
 		this.element
 			.uniqueId()
@@ -136,7 +136,7 @@ return $.widget( "ui.menu", {
 
 		this.refresh();
 
-		// Clicks outside of a menu collapse any open menus
+		// Clicks outside of a menu collapse any open menu
 		this._on( this.document, {
 			click: function( event ) {
 				if ( this._closeOnDocumentClick( event ) ) {
@@ -150,7 +150,7 @@ return $.widget( "ui.menu", {
 	},
 
 	_destroy: function() {
-		// Destroy (sub)menus
+		// Destroy (sub)menu
 		this.element
 			.removeAttr( "aria-activedescendant" )
 			.find( ".ui-menu" ).addBack()
@@ -283,7 +283,7 @@ return $.widget( "ui.menu", {
 
 		this.element.toggleClass( "ui-menu-icons", !!this.element.find( ".ui-icon" ).length );
 
-		// Initialize nested menus
+		// Initialize nested menu
 		submenus.filter( ":not(.ui-menu)" )
 			.addClass( "ui-menu ui-widget ui-widget-content ui-front" )
 			.hide()
@@ -464,7 +464,7 @@ return $.widget( "ui.menu", {
 			var currentMenu = all ? this.element :
 				$( event && event.target ).closest( this.element.find( ".ui-menu" ) );
 
-			// If we found no valid submenu ancestor, use the main menu to close all sub menus anyway
+			// If we found no valid submenu ancestor, use the main menu to close all sub menu anyway
 			if ( !currentMenu.length ) {
 				currentMenu = this.element;
 			}
@@ -477,7 +477,7 @@ return $.widget( "ui.menu", {
 	},
 
 	// With no arguments, closes the currently active menu - if nothing is active
-	// it closes all menus.  If passed an argument, it will search for menus BELOW
+	// it closes all menu.  If passed an argument, it will search for menu BELOW
 	_close: function( startMenu ) {
 		if ( !startMenu ) {
 			startMenu = this.active ? this.active.parent() : this.element;

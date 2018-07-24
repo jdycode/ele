@@ -64,7 +64,7 @@
                 <a href="{{route('shops.on',$shop)}}">审核</a>
                 <a href="{{route('shops.off',$shop)}}">禁用</a>
                 <a href="{{route('shops.edit',$shop)}}" class="glyphicon glyphicon-edit">编辑</a>
-                <a href="{{route('shops.del',$shop)}}" class="glyphicon glyphicon-trash"></a>
+                <a href="{{route('shops.del',$shop)}}" class="glyphicon glyphicon-trash"onclick="return confirm('确定要删除这条数据吗？')"></a>
             </td>
         </tr>
     @endforeach

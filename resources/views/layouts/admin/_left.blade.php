@@ -7,7 +7,9 @@
                 <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>管理员</p>
+                      @auth('admin')
+                    <p>{{\Illuminate\Support\Facades\Auth::guard('admin')->user()->name}}</p>
+                    @endauth
                 <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
             </div>
         </div>

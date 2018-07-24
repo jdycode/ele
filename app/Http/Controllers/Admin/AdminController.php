@@ -10,9 +10,11 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Shop\BaseController;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -87,6 +89,53 @@ class AdminController extends Controller
         return view('admin.admin.index', compact('admins'));
 }
 
+
+public function edit(Request $request)
+{
+    //判断是不是post提交
+   if ($request->isMethod('post')){
+       //验证
+       $admin = Auth::guard('admin');
+       dd($admin);
+       $this->validate($request,[
+           'oldpassword'=>'required',
+           'newpassword'=>'required'
+       ]);
+       //得到当前用户对象
+
+       $oldpassword = $request->post('oldpassword');
+       //判断老密码是否正确
+       if(Hash::check($oldpassword,$admin->password)){
+           //如果老密码正确设置新的密码
+           $admin->password=Hash::make($request->post('password'));
+           //保存修改密码
+           $admin->save();
+           //跳转
+           return redirect()->rout('admin.index')->with('success','修改成功');
+       }
+       //旧密码不正确
+       return back()->with('denger','旧密码不正确');
+   }
+        return view('admin.admin.edit');
+    }
+
+    /*
+     * 删除管理员
+     */
+    public function del($id)
+    {
+        //1号管理员不能删除
+        if($id==1){
+            return back()->with('denger','1号管理员不能删除');
+        }
+        $admin = Admin::findOrFail($id);
+        $admin->delete();
+        //跳转
+        return redirect()->route('admin.index');
+}
+
+
+
     /*
       * 退出
       */
@@ -98,6 +147,5 @@ class AdminController extends Controller
         $request->session()->flash("success", "退出成功");
         //跳转
         return redirect()->route('admin.login');
-
     }
 }

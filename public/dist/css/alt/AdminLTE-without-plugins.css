@@ -900,7 +900,7 @@ a:focus {
   color: #5e5e5e;
 }
 /*
- * Component: Dropdown menus
+ * Component: Dropdown menu
  * -------------------------
  */
 /*Dropdowns in general*/
@@ -1154,7 +1154,7 @@ a:focus {
     line-height: 10px;
   }
 }
-/* Add fade animation to dropdown menus by appending
+/* Add fade animation to dropdown menu by appending
  the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
 .open:not(.dropup) > .animated-dropdown-menu {
   backface-visibility: visible !important;

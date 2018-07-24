@@ -216,7 +216,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">管理员信息</span>
+                        <span class="hidden-xs"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -234,9 +234,11 @@
                                 <div class="col-xs-4 text-center">
                                     <a href="{{route('admin.reg')}}">注册</a>
                                 </div>
+
                                 <div class="col-xs-4 text-center">
                                     <a href="{{route('admin.login')}}">登录</a>
                                 </div>
+
                                 <div class="col-xs-4 text-center">
                                     <a href="{{route('admin.logout')}}">注销</a>
                                 </div>

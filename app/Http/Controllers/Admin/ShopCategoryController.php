@@ -84,6 +84,9 @@ class ShopCategoryController extends Controller
         return view('admin.shop_category.edit', compact('cates'));
     }
 
+    /*
+     * 删除
+     */
     public function del(Request $request,$id)
     {
         //通过id找到对象
