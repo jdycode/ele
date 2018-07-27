@@ -6,14 +6,23 @@ namespace App\Http\Controllers\Admin;
 use App\Models\ShopCategory;
 use App\Models\Shop;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ShopsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin')->except("login");
+    }
+    /*
+     * 首页
+     */
     public function index()
     {
         $cate = ShopCategory::all();
-        $shops = Shop::all();
+        $shops = Shop::orderBy('id','desc')->paginate(3);
         return view('admin.shops.index', compact('shops', 'cate'));
     }
 
@@ -27,23 +36,23 @@ class ShopsController extends Controller
         if ($request->isMethod('post')) {
 
             //验证信息是否合法  如果验证失败跳回回去
-//            $this->validate($request, [
-//                'shop_category_id' => "required",
-//                'shop_name' => "required",
-//                'shop_img' => "required",
-//                'shop_rating' => "required",
-//                'brand' => "required",
-//                'on_time' => "required",
-//                'fengniao' => "required",
-//                'bao' => "required",
-//                'piao' => "required",
-//                'zhun' => "required",
-//                'start_send' => "required",
-//                'send_cost' => "required",
-//                'notice' => "required",
-//                'discount' => "required",
-//                'status' => "required",
-//            ]);
+            $this->validate($request, [
+                'shop_category_id' => "required",
+                'shop_name' => "required",
+                'shop_img' => "required",
+                'shop_rating' => "required",
+                'brand' => "required",
+                'on_time' => "required",
+                'fengniao' => "required",
+                'bao' => "required",
+                'piao' => "required",
+                'zhun' => "required",
+                'start_send' => "required",
+                'send_cost' => "required",
+                'notice' => "required",
+                'discount' => "required",
+                'status' => "required",
+            ]);
 
             //接收数据
             $data = $request->post();
@@ -75,24 +84,24 @@ class ShopsController extends Controller
         $data['img'] = $shops->shop_img;
         //判断是不是post提交
         if ($request->isMethod('post')) {
-            //验证
-//           $this->validate($request, [
-//                'shop_category_id' => "required",
-//                'shop_name' => "required",
-//                'shop_img' => "required",
-//                'shop_rating' => "required",
-//                'brand' => "required",
-//                'on_time' => "required",
-//                'fengniao' => "required",
-//                'bao' => "required",
-//                'piao' => "required",
-//                'zhun' => "required",
-//                'start_send' => "required",
-//                'send_cost' => "required",
-//                'notice' => "required",
-//                'discount' => "required",
-//                'status' => "required",
-//            ]);
+           // 验证
+           $this->validate($request, [
+                'shop_category_id' => "required",
+                'shop_name' => "required",
+                'shop_img' => "required",
+                'shop_rating' => "required",
+                'brand' => "required",
+                'on_time' => "required",
+                'fengniao' => "required",
+                'bao' => "required",
+                'piao' => "required",
+                'zhun' => "required",
+                'start_send' => "required",
+                'send_cost' => "required",
+                'notice' => "required",
+                'discount' => "required",
+                'status' => "required",
+            ]);
             //判断图片是否存在
             if ($request->file('img')) {
                 //上传图片
@@ -110,6 +119,9 @@ class ShopsController extends Controller
         return view('admin.shops.edit', compact('shops', 'cates'));
     }
 
+    /*
+     * 删除
+     */
     public function del(Request $request, $id)
     {
         //通过id找到对象
@@ -124,11 +136,13 @@ class ShopsController extends Controller
     }
 
     //通过审核
-    public function on($id)
+    public function on(Request $request,$id)
     {
         $shop = Shop::findOrFail($id);
-        $shop->status = 1;
-        $shop->save();
+        $user=$shop->user;
+
+        $user->status = 1;
+        $user->save();
         //session()->flash("success","通过审核");
         return back()->with("success", "通过审核");
     }

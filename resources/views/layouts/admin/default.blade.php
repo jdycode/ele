@@ -42,6 +42,8 @@
 <div class="wrapper">
 
    {{--引入头部视图--}}
+
+
        @include("layouts.admin._header")
     <!-- Left side column. contains the logo and sidebar -->
     {{--引用左边子视图--}}
@@ -65,8 +67,10 @@
         {{--引用户 消息提示--}}
         <!-- Main content -->
        {{--主体部分--}}
+    @include("layouts.admin._msg")
+    @include("layouts.admin._errors")
+    @include('vendor.ueditor.assets')
         @yield("content")
-
 
         <!-- /.content -->
     </div>

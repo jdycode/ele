@@ -21,8 +21,8 @@
             <td>{{$user->status==1?'正常':'待审核'}}</td>
             <td>{{$user->shop->shop_name}}</td>
             <td>
-                <a href="{{route('user.edit',$user)}}" class="glyphicon glyphicon-edit">编辑</a>
-                <a href="{{route('user.del',$user)}}" class="glyphicon glyphicon-trash" onclick="return confirm('确定要删除这条数据吗？')">删除</a>
+                <a href="{{route('user.edit',$user)}}" class="glyphicon glyphicon-edit"></a>
+                <a href="{{route('user.del',$user)}}" class="glyphicon glyphicon-trash" onclick="return confirm('确定要删除这条数据吗？')"></a>
             </td>
         </tr>
     @endforeach

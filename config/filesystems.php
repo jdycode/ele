@@ -66,7 +66,15 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
         ],
-
+        //aliyun存储
+        'oss' => [
+            'driver'        => 'oss',
+            'access_id'     => 'LTAIZB5XDmEyaNfT',
+            'access_key'    => 'oCsoy06A0M9b8Mb52mUeOjTZ9AUE73',
+            'bucket'        => 'jdyo',
+            'endpoint'      => 'oss-cn-hangzhou.aliyuncs.com', // OSS 外网节点或自定义外部域名
+            'debug'         => false
+        ],
     ],
 
 ];

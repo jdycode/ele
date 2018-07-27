@@ -15,60 +15,140 @@ use App\Models\MenuCategory;
 use App\Models\Shop;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:web')->except("login");
+    }
+
+    /*
+     * 首页
+     */
     public function index()
     {
+        //1.找到当前用户
+        $user = Auth::user();
+        $shopId = $user->shop_id;
+        //得到用户的所有商品分类
+        $cates = MenuCategory::where('shop_id', $shopId)->get();
+        //接收参数
+        $minPrice = request()->input('minPrice');
+        $maxPrice = request()->input('maxPrice');
+        $keyword = request()->input('keyword');
+        $cateId = request()->input('cate_id');
 
-        $menus =Menu::all();
-        return view('shop.menu.index',compact('menus'));
-}
+        $query = Menu::orderBy('id');
+
+        if ($minPrice !== null) {
+            $query->where('goods_price', '>=', $minPrice);
+        }
+        if ($maxPrice !== null) {
+            $query->where('goods_price', '<=', $maxPrice);
+        }
+        if ($keyword !== null) {
+            $query->where('goods_name', 'like', "%{$keyword}%");
+        }
+        if ($cateId !== null) {
+            $query->where('category_id', 'like', "%{$cateId}%");
+        }
+
+        $menus = $query->paginate(3);
+
+
+        return view("shop.menu.index", compact('cates', 'menus'));
+    }
+
 
     /*
     * 添加
     */
     public function add(Request $request)
     {
-        $cates = Shop::all();
-        $menus= MenuCategory::all();
-        //取出所有商品分类信息
-        $menu = Menu::all();
-        //判断是不是post提交
+        //得到所有当前用户菜品分类
+        //1.找到当前用户
+        $user = Auth::user();
+        $shopId = $user->shop_id;
+        //得到用户的所有商品分类
+        $cates = MenuCategory::where('shop_id', $shopId)->get();
+        //判断是否POST提交
         if ($request->isMethod('post')) {
-
-            //验证信息是否合法  如果验证失败跳回回去
-            $this->validate($request, [
-                'goods_name' => "required",
-                'rating' => "required",
-                'shop_id' => "required|int",
-                'category_id' => "required",
-                'goods_price' => "required",
-                'description' => "required",
-                'month_sales' => "required",
-                'rating_count' => "required",
-                'tips' => "required",
-                'satisfy_count' => "required",
-                'satisfy_rate' => "required",
-            ]);
-            //var_dump($request);exit;
-            //接收所有数据
-            $data = $request->all();
-//            dd($data);
-            $data['logo'] ='';
-            //上传图片
-            if($request->file('img')){
-                $filename = ImageUploadTool::save($request->file('img'), "books", 'jdy');
-                //在data里追加上传的文件
-                $data['logo'] = $filename;
+            //接收值
+            //判断同店铺同分类菜名是否有相同
+            $num = Menu::where('goods_name', $request->post('goods_name'))->where('shop_id', $shopId)->where('category_id', $request->post('category_id'))->count();
+            if ($num) {
+                return back()->with('danger', '已有同名菜品');
             }
-            //插入数据
-            Menu::create($data);
-            //提示信息
-            $request->session()->flash('success', '添加成功');
-            //跳转
-            return redirect()->route('menu.index');
+            $data = $request->post();
+//           //处理图片
+            if ($request->file('goods_img')) {
+                $data['goods_img'] = $request->file('goods_img')->store('jdyo', 'oss');
+
+            }
+            $data['shop_id'] = $shopId;
+            //入库
+            if (Menu::create($data)) {
+                //跳转
+                return redirect()->route('menu.index')->with('success', '添加成功');
+            }
         }
-        return view('shop.menu.add', compact('menu', 'menus','cates'));
+        return view('shop.menu.add', compact('cates'));
+
     }
+
+    /*
+    * 编辑
+    */
+    public function edit(Request $request)
+    {
+        $menu = Menu::all();
+        //得到所有当前用户菜品分类
+        //1.找到当前用户
+        $user = Auth::user();
+        $shopId = $user->shop_id;
+        //得到用户的所有商品分类
+        $cates = MenuCategory::where('shop_id', $shopId)->get();
+        //判断是否POST提交
+        if ($request->isMethod('post')) {
+            //接收值
+            //判断同店铺同分类菜名是否有相同
+            $num = Menu::where('goods_name', $request->post('goods_name'))->where('shop_id', $shopId)->where('category_id', $request->post('category_id'))->count();
+            if ($num) {
+                return back()->with('danger', '已有同名菜品');
+            }
+            $data = $request->post();
+//           //处理图片
+            if ($request->file('goods_img')) {
+                $data['goods_img'] = $request->file('goods_img')->store('jdyo', 'oss');
+
+            }
+            $data['shop_id'] = $shopId;
+            //入库
+            if (Menu::update($data)) {
+                //跳转
+                return redirect()->route('menu.index')->with('success', '修改成功');
+            }
+        }
+
+        return view('shop.menu.add', compact('cates', 'menu'));
+
+    }
+
+
+    /*
+     * 删除
+     */
+
+    public function del($id)
+    {
+        //  通过id找到单前对象
+        $menu = Menu::findOrFail($id);
+        //删除数据
+        $menu->delete();
+        //跳转并提示信息
+        return redirect()->route('menu.index')->with('success', '删除成功');
+    }
+
 }

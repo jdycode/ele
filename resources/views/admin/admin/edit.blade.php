@@ -1,22 +1,32 @@
 @extends("layouts.admin.default")
 @section('content')
-    <h2 class="text-center">修改密码</h2>
-    <hr>
-    <form class="container" action="" method="post" enctype="multipart/form-data" style="width: fit-content">
+
+    <form class="form-group-sm" action="" method="post">
+        <h2 class="text-center">修改密码</h2>
         {{csrf_field()}}
-        <div class="form-group" >
-            <label for="exampleInputPassword1">旧密码</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="" name="oldpassword" value="">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">旧密码</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputEmail3" placeholder="旧密码" name="old_password">
+            </div>
         </div>
-        <div class="form-group" >
-            <label for="exampleInputPassword1">新密码</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="" name="newpassword">
-        </div>
-        <div class="form-group" >
-            <label for="exampleInputPassword1">确认新密码</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" name="newpassword">
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">新密码</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword3" placeholder="新密码" name="password">
+            </div>
         </div>
 
-        <button type="submit" class="btn btn-default">提交</button>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">确认新密码</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword3" placeholder="确认新密码" name="password_confirmation">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">确认</button>
+            </div>
+        </div>
     </form>
 @endsection

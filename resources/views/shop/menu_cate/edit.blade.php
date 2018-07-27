@@ -4,9 +4,10 @@
     <form action="" method="post" class="form-inline" enctype="multipart/form-data">
         {{ csrf_field() }}
         名称：<input type="text" name="name" placeholder="" class="form-control" value="{{old('name')}}"><br>
-        编号：<input type="text" name="type_accumulation" placeholder="" class="form-control" value="{{old('name')}}"><br>
         商家：<select class="form-control" name="shop_id">
-            <option value="1">1</option>
+            @foreach($cates as $cate)
+            <option value="{{$cate->shop_id}}">{{$cate->shop_name}}</option>
+            @endforeach
         </select><br>
         简介：<input type="text" name="description" placeholder="" class="form-control" value="{{old('description')}}"><br>
         是否默认：<div class="radio" >

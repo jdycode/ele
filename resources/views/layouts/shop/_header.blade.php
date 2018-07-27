@@ -42,14 +42,11 @@
                                 <div class="col-xs-4 text-center">
                                     <a href="{{route('user.reg')}}">注册</a>
                                 </div>
-
-
-                                @auth
+                                {{--@auth--}}
                                     <div class="col-xs-4 text-center">
                                         <a href="{{route('user.login')}}">登录</a>
                                     </div>
-                                @endauth
-
+                                {{--@endauth--}}
                                 <div class="col-xs-4 text-center">
                                     <a href="{{route('user.logout')}}">注销</a>
                                 </div>
@@ -68,9 +65,9 @@
                     </ul>
                 </li>
                 <!-- Control Sidebar Toggle Button -->
-                {{--<li>--}}
-                    {{--<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>--}}
-                {{--</li>--}}
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
             </ul>
         </div>
     </nav>

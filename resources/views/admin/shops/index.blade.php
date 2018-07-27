@@ -4,7 +4,7 @@
 
 @section("content")
 
-  <a href="{{route('shops.add')}}" class="glyphicon glyphicon-plus ">添加信息</a>
+  <a href="{{route('shops.add')}}" class="glyphicon glyphicon-plus "></a>
 
 <table class="table table-bordered table-hover">
     <tr>
@@ -49,24 +49,25 @@
             {{--<td>{{$shop->discount}}</td>--}}
             {{--<td>{{\App\Models\Shop::$statusArray[$shop->status]}}</td>--}}
             @if($shop->status==1)
-                <td> <button class="btn btn-success">正常</button> </td>
+                <td> <button class="btn-xs btn-success">正常</button> </td>
 
             @elseif($shop->status==0)
-              <td> <button class="btn btn-info">待审</button> </td>
+              <td> <button class="btn-xs btn-info">待审</button> </td>
             @elseif($shop->status==-1)
-              <td> <button class="btn btn-danger">禁用</button> </td>
+              <td> <button class="btn-xs btn-danger">禁用</button> </td>
            @endif
 
             <td>
                 {{--@if($shop->status===0)--}}
                     {{--<a href="{{route('shops.on',$shop->id)}}">审核</a>--}}
                 {{--@endif--}}
-                <a href="{{route('shops.on',$shop)}}">审核</a>
-                <a href="{{route('shops.off',$shop)}}">禁用</a>
-                <a href="{{route('shops.edit',$shop)}}" class="glyphicon glyphicon-edit">编辑</a>
+                <a href="{{route('shops.on',$shop)}}" class="glyphicon glyphicon-ok"></a>
+                <a href="{{route('shops.off',$shop)}}" class="glyphicon glyphicon-remove"></a>
+                <a href="{{route('shops.edit',$shop)}}" class="glyphicon glyphicon-edit"></a>
                 <a href="{{route('shops.del',$shop)}}" class="glyphicon glyphicon-trash"onclick="return confirm('确定要删除这条数据吗？')"></a>
             </td>
         </tr>
     @endforeach
 </table>
+    {{$shops->links()}}
 @endsection

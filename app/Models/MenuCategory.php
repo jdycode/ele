@@ -9,9 +9,10 @@
 namespace App\Models;
 
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class MenuCategory extends Model
+class MenuCategory extends Authenticatable
 {
 //可以修改字段
 public $fillable=['name','type_accumulation','shop_id','description','is_selected'];

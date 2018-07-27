@@ -14,10 +14,17 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 class MenuCategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:web')->except("login");
+    }
 
+/*
+ * 显示首页
+ */
     public function index()
     {
-        $cates = MenuCategory::all();
+        $cates = MenuCategory::paginate(2);
 //        dd($cates);
         //显示首页
         return view('shop.menu_cate.index', compact('cates'));
@@ -35,8 +42,6 @@ class MenuCategoryController extends Controller
             //验证信息是否合法
             $this->validate($request, [
                 'name' => "required",
-                'type_accumulation' => "required",
-                'description' => "required",
             ]);
 //            //接收数据
             $data = $request->all();
@@ -56,7 +61,8 @@ class MenuCategoryController extends Controller
  */
     public function edit(Request $request,$id)
     {
-        $cates= MenuCategory::find($id);
+        $cates = Shop::all();
+        $menucate= MenuCategory::find($id);
         //判断是不是post提交
 //        dd($cates);
         if($request->isMethod('post')){
@@ -71,9 +77,9 @@ class MenuCategoryController extends Controller
             //提示信息
             $request->session()->flash('success', '修改成功');
             //跳转
-            return redirect()->route('menu_cate.index','cates');
+            return redirect()->route('menu_cate.index');
         }
-        return view('shop.menu_cate.edit');
+        return view('shop.menu_cate.edit',compact('cates','menucate'));
 
     }
 

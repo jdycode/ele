@@ -37,6 +37,9 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https:/fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <link rel="stylesheet" type="text/css" href="/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body class="/hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -47,7 +50,7 @@
     {{--引用左边子视图--}}
     @include("layouts.shop._left")
    @include("layouts.shop._errors")
-   @include("layouts.shop._msg")
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -66,6 +69,9 @@
         {{--引用户 消息提示--}}
         <!-- Main content -->
        {{--主体部分--}}
+    @include("layouts.shop._msg")
+
+
         @yield("content")
 
 
@@ -307,5 +313,8 @@
 <script src="/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
+<script type="text/javascript" src="/webuploader/webuploader.js"></script>
+
+@yield("js")
 </body>
 </html>

@@ -11,7 +11,7 @@
         <th>id</th>
         <th>用户名</th>
         <th>Email</th>
-        {{--<th>密码</th>--}}
+        <th>操作</th>
 
     </tr>
     @foreach($admins as $admin)
@@ -21,9 +21,9 @@
             <td>{{$admin->email}}</td>
             {{--<td>{{$admin->password}}</td>--}}
             <td>
-                <a href="{{route('admin.edit',$admin)}}" class="btn btn-info">修改密码</a>
+                <a href="{{route('admin.edit',$admin)}}" class="glyphicon glyphicon-edit"></a>
                 @if($admin->id!==1)
-                <a href="{{route('admin.del',$admin)}}" class="btn btn-info">删除</a>
+                <a href="{{route('admin.del',$admin)}}" class="glyphicon glyphicon-trash"></a>
                     @endif
             </td>
         </tr>
