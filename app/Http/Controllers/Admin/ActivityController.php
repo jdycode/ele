@@ -43,9 +43,7 @@ class ActivityController extends Controller
               'title'=>'required' ,
                 'content'=>'required' ,
             ]);
-
            $data = $request->post();
-
            //插入数据
            Activity::create($data);
            //提示信息并跳转
@@ -54,6 +52,7 @@ class ActivityController extends Controller
         //显示列表
         return view('admin.activity.add');
     }
+
 
     /*
    * 编辑
@@ -75,6 +74,7 @@ class ActivityController extends Controller
         //显示列表
         return view('admin.activity.edit',compact('acts'));
     }
+
 
     /*
      * 删除

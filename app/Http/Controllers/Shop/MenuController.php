@@ -57,10 +57,8 @@ class MenuController extends Controller
 
         $menus = $query->paginate(3);
 
-
         return view("shop.menu.index", compact('cates', 'menus'));
     }
-
 
     /*
     * 添加

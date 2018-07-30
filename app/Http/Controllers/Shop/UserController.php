@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Mrgoon\AliSms\AliSms;
 
 
 class UserController extends Controller
@@ -24,6 +25,13 @@ class UserController extends Controller
      */
     public function reg(Request $request)
     {
+
+//        $aliSms = new AliSms();
+//        $response = $aliSms->sendSms('18725725090', '
+//SMS_140660142', ['name'=> '123456']);
+//dd($response);
+
+
         if ($request->isMethod('post')) {
 //            dd($request->post());
             //验证
@@ -31,13 +39,13 @@ class UserController extends Controller
                 'name' => 'required',
                 'email' => 'required',
                 'password' => 'required'
-          ]);
+            ]);
 
             //更新店铺表
             $shops = new Shop();
             //设置shop的状态为0 未审核
-            $shops->status=0;
-            $shops->shop_img='';
+            $shops->status = 0;
+            $shops->shop_img = '';
             //批量赋值
             $shops->fill($request->input());
 //            dd($request->input());
@@ -45,25 +53,25 @@ class UserController extends Controller
              *   相当于    $shop->name=$_POST['shop_name'];
              */
             //图片上传
-            $file=$request->file('shop_img');
+            $file = $request->file('shop_img');
             //dd($file);
             //判断是否需要上传了图片
-            if($file){
+            if ($file) {
                 //需要上传就上传图片
-                $shops->shop_img=$file->store('/uploads/books','public_images');
+                $shops->shop_img = $file->store('/uploads/books', 'public_images');
             }
 //dd($shops->shop_img);
             //开启事务
-            DB::transaction(function () use($shops,$request){
-            //保存商家信息
+            DB::transaction(function () use ($shops, $request) {
+                //保存商家信息
                 $shops->save();
-            //添加用户信息
+                //添加用户信息
                 User::create([
                     'shop_id' => $shops->id,
                     'name' => $request->input('name'),
                     'email' => $request->input('email'),
                     'password' => bcrypt($request->input('password')),
-                    'status'=>0
+                    'status' => 0
                 ]);
             });
 
@@ -73,16 +81,18 @@ class UserController extends Controller
             return redirect()->route('user.login');
         }
         //得到所有商家分类
-        $cates=ShopCategory::where('status',1)->get();
+        $cates = ShopCategory::where('status', 1)->get();
         //显示视图
-        return view('shop.user.reg',compact('cates'));
+        return view('shop.user.reg', compact('cates'));
     }
+
     /*
      * 登录
      */
 
     public function login(Request $request)
     {
+
         //判断是不是post提交
         if ($request->isMethod('post')) {
 //            dd($request->post());
@@ -108,9 +118,9 @@ class UserController extends Controller
         return view('shop.user.login');
     }
 
-/*
- * 显示首页
- */
+    /*
+     * 显示首页
+     */
     public function index(Request $request)
     {
         //取到所有数据
@@ -128,7 +138,7 @@ class UserController extends Controller
         //通过id找到对象
         $users = User::findOrFail($id);
 //        dd($request->post());
-        $data=$request->post();
+        $data = $request->post();
         //判断是不是post提交
         if ($request->isMethod('post')) {
             //验证

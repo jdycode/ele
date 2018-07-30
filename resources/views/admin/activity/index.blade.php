@@ -19,7 +19,7 @@
         <tr>
             <td>{{$act->id}}</td>
             <td>{{$act->title}}</td>
-            <td>{{$act->content}}</td>
+            <td>{!!$act->content!!}</td>
             <td>{{$act->start_time}}</td>
             <td>{{$act->end_time}}</td>
             <td>

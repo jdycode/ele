@@ -265,5 +265,49 @@ Route::domain('shop.ele.com')->namespace('Shop')->group(function () {
                 }     
                 return $data;
            }
+           
+# DAY5
+# 开发任务
+接口开发 
+ - 商家列表接口(支持商家搜索) 
+ - 获取指定商家接口
+           
   ### 解决方法
-  看老师代码 不懂的问同学 
+
+# DAY6
+开发任务
+接口开发 
+- 用户注册 
+- 用户登录 
+- 发送短信 
+要求 
+- 创建会员表 
+- 短信验证码发送成功后,保存到redis,并设置有效期5分钟 
+//会员注册接口
+Route::post('member/reg','Api\MemberController@reg');
+//发送短信验证接口
+Route::any('member/sms','Api\MemberController@sms');
+//会员登录接口
+Route::any('member/login','Api\MemberController@login');
+//重置密码接口
+Route::any('member/forget','Api\MemberController@forget');
+//修改密码接口
+Route::any('member/changePassword','Api\MemberController@changePassword');
+
+
+- 用户注册时,从redis取出验证码进行验证
+  //设置验证码
+        $code = rand(1000, 9999);
+        //把验证码存起来
+        Redis::set("tel_" . $tel, $code);
+        //设置验证码过期时间
+        Redis::expire("tel_" . $tel, 300);
+
+数据表设计
+会员表
+字段名称	类型	备注
+id	primary	主键
+username	string	用户名
+password	string	密码
+tel	string	电话号码
+rememberToken	string	token
