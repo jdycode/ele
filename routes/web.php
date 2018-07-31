@@ -44,7 +44,6 @@ Route::domain('admin.com')->namespace('Admin')->group(function () {
     Route::any('activity/add', "ActivityController@add")->name('activity.add');
     Route::any('activity/edit/{id}', "ActivityController@edit")->name('activity.edit');
     Route::any('activity/del{id}', "ActivityController@del")->name('activity.del');
-
 });
 
 
@@ -73,6 +72,7 @@ Route::domain('shop.com')->namespace('Shop')->group(function () {
 
 //活动
     Route::any('activity/show', "ActivityController@show")->name('activity.show');
+
 
 });
 

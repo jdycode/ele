@@ -14068,7 +14068,7 @@
 		 * 
 		 * Each entry in this object is a function and defines which buttons should
 		 * be shown by the pagination rendering method that is used for the table:
-		 * {@link DataTable.ext.renderer.pageButton}. The renderer addresses how the
+		 * {@link DataTable.ext.renderer.pageButton}. The renderer addresse how the
 		 * buttons are displayed in the document, while the functions here tell it
 		 * what buttons to display. This is done by returning an array of button
 		 * descriptions (what each button will do).

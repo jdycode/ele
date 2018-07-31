@@ -82,8 +82,8 @@ class MenuController extends Controller
             $data = $request->post();
 //           //处理图片
             if ($request->file('goods_img')) {
-                $data['goods_img'] = $request->file('goods_img')->store('jdyo', 'oss');
-
+                $fileName = $request->file('goods_img')->store('jdyo', 'oss');
+                $data['goods_img'] = env("ALIYUN_OSS_URL") . $fileName;
             }
             $data['shop_id'] = $shopId;
             //入库
@@ -99,9 +99,9 @@ class MenuController extends Controller
     /*
     * 编辑
     */
-    public function edit(Request $request)
+    public function edit(Request $request,$id)
     {
-        $menu = Menu::all();
+        $menu = Menu::findOrFail($id);
         //得到所有当前用户菜品分类
         //1.找到当前用户
         $user = Auth::user();
@@ -119,12 +119,12 @@ class MenuController extends Controller
             $data = $request->post();
 //           //处理图片
             if ($request->file('goods_img')) {
-                $data['goods_img'] = $request->file('goods_img')->store('jdyo', 'oss');
-
+                $fileName = $request->file('goods_img')->store('jdyo', 'oss');
+                $data['goods_img'] = env("ALIYUN_OSS_URL") . $fileName;
             }
             $data['shop_id'] = $shopId;
             //入库
-            if (Menu::update($data)) {
+            if ($menu->update($data)) {
                 //跳转
                 return redirect()->route('menu.index')->with('success', '修改成功');
             }

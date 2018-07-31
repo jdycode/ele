@@ -6921,7 +6921,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get the client IP addresses.
+         * Get the client IP addresse.
          *
          * @return array 
          * @static 
@@ -7497,7 +7497,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Returns the client IP addresses.
+         * Returns the client IP addresse.
          * 
          * In the returned array the most trusted IP address is first, and the
          * least trusted one last. The "real" client IP address is the last one,
@@ -7505,7 +7505,7 @@ namespace Illuminate\Support\Facades {
          * 
          * Use this method carefully; you should use getClientIp() instead.
          *
-         * @return array The client IP addresses
+         * @return array The client IP addresse
          * @see getClientIp()
          * @static 
          */ 
@@ -7520,7 +7520,7 @@ namespace Illuminate\Support\Facades {
          * 
          * This method can read the client IP address from the "X-Forwarded-For" header
          * when trusted proxies were set via "setTrustedProxies()". The "X-Forwarded-For"
-         * header value is a comma+space separated list of IP addresses, the left-most
+         * header value is a comma+space separated list of IP addresse, the left-most
          * being the original client, and each successive proxy that passed the request
          * adding the IP address where it received the request from.
          * 

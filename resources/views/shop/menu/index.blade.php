@@ -48,7 +48,7 @@
                 <td>{{$menu->menu->name}}</td>
                 <td>{{$menu->goods_price}}</td>
                 <td>{{$menu->month_sales}}</td>
-                <td><img src="https://jdyo.oss-cn-hangzhou.aliyuncs.com/{{$menu->goods_img}}" width="50"></td>
+                <td><img src="{{$menu->goods_img}}" width="50"></td>
                 <td>{{$menu->status==1?'是':'否'}}</td>
                 <td>
                     <a href="{{route('menu.edit',$menu)}}" class="glyphicon glyphicon-edit"></a>
