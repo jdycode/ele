@@ -11,6 +11,7 @@
         <th>id</th>
         <th>用户名</th>
         <th>Email</th>
+        <th>权限</th>
         <th>操作</th>
 
     </tr>
@@ -19,6 +20,7 @@
             <td>{{$admin->id}}</td>
             <td>{{$admin->name}}</td>
             <td>{{$admin->email}}</td>
+            <td>{{ str_replace(['[',']','"'],'', $admin->permissions()->pluck('name')) }}</td>
             {{--<td>{{$admin->password}}</td>--}}
             <td>
                 <a href="{{route('admin.edit',$admin)}}" class="glyphicon glyphicon-edit"></a>

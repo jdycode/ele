@@ -1,7 +1,7 @@
 @extends("layouts.shop.default")
 @section('content')
 
-    <h2 class="text-center">管理员登录</h2>
+    <h2 class="text-center">欢迎登录</h2>
     <hr>
     <form class="container" action="" method="post" enctype="multipart/form-data" style="width: fit-content">
         {{csrf_field()}}

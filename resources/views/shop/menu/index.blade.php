@@ -49,7 +49,9 @@
                 <td>{{$menu->goods_price}}</td>
                 <td>{{$menu->month_sales}}</td>
                 <td><img src="{{$menu->goods_img}}" width="50"></td>
-                <td>{{$menu->status==1?'是':'否'}}</td>
+                <td>
+                    {{$menu->status==1?'是':'否'}}
+                </td>
                 <td>
                     <a href="{{route('menu.edit',$menu)}}" class="glyphicon glyphicon-edit"></a>
                     <a href="{{route('menu.del',$menu)}}" class="glyphicon glyphicon-trash"></a>

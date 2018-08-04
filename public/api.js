@@ -18,9 +18,9 @@ window.api = {
     // 保存修改地址接口
     editAddress: '/api/addresse/edit',
     // 获得订单列表接口
-    orderList: '/orderList.php',
+    orderList: '/api/orderList/list',
     // 获得指定订单接口
-    order: '/order.php',
+    order: '/api/orderdetail/detail',
     // 获得商家列表接口
     businessList: '/api/shop/list',
     // 获得指定商家接口
@@ -30,9 +30,9 @@ window.api = {
     // 获取购物车数据接口
     cart: '/api/addCart/cart',
     // 添加订单接口
-    addOrder: '/addorder.php',
+    addOrder: '/api/addorder/add',
     // 支付接口
-    pay: '/pay.php',
+    pay: '/api/pay/pay',
     // 用户详情接口
-    userDetail: 'http://www.ele.com/api/member/detail',
+    userDetail: '/api/member/det',
 };

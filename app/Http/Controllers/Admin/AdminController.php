@@ -10,19 +10,18 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Shop\BaseController;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
-class AdminController extends Controller
-{
+class AdminController extends Controller {
 
     public function __construct()
     {
-        $this->middleware('auth:admin')->except("login");
+        $this->middleware('auth:admin')->except("login",'reg');
     }
 
     /*
@@ -42,14 +41,17 @@ class AdminController extends Controller
             $data = $request->post();
             $data['password'] = bcrypt($request->post('password'));
             //插入数据
-            Admin::create($data);
+            $admin = Admin::create($data);
+            $admin->syncRoles($request->post('role'));
             //提示信息
             $request->session()->flash('success', "注册成功");
             //跳转
             return redirect()->route('admin.login');
         }
+        $roles = Role::all();
+//        dd($roles);
         //显示注册页面
-        return view('admin.admin.reg');
+        return view('admin.admin.reg',compact('roles'));
     }
 
     /*

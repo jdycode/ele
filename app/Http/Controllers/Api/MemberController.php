@@ -168,7 +168,7 @@ class MemberController extends Controller
     public function changePassword(Request $request)
     {
         //通过ID找到当前对象
-        $member = Member::findOrFail($request->post('id'));
+        $member = Member::find($request->post('id'));
       //验证
         if (Hash::check($request->post('oldPassword'), $member->password)) {
 
@@ -191,5 +191,11 @@ class MemberController extends Controller
             "status" => "false",
             "message" => "原密码有误"
         ];
+    }
+
+
+    public function det(Request $request)
+    {
+       return Member::where('id',$request->all(['user_id']))->first();
     }
 }

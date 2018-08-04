@@ -16,6 +16,13 @@
             <label for="exampleInputPassword1">密码</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" name="password">
         </div>
+        <div class="form-group" >
+            <label for="exampleInputPassword1">权限</label>
+            @foreach($roles as $role)
+                <input type="checkbox" id="exampleInputPassword1" placeholder="权限" name="role[]" value="{{$role->name}}">{{$role->name}}
+            @endforeach
+        </div>
+
 
         <button type="submit" class="btn btn-default">注册</button>
     </form>

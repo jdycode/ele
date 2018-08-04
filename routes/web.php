@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//平台
+//管理员平台
 Route::domain('admin.com')->namespace('Admin')->group(function () {
     //店铺分类
     Route::get('shop_category/index', "ShopCategoryController@index")->name('shop_category.index');
@@ -23,6 +23,12 @@ Route::domain('admin.com')->namespace('Admin')->group(function () {
     Route::any('shop_category/edit/{id}', "ShopCategoryController@edit")->name('shop_category.edit');
     Route::any('shop_category/del/{id}', "ShopCategoryController@del")->name('shop_category.del');
 
+    //测试
+//    Route::get('/mail', function () {
+//        $order =\App\Models\Order::find(26);
+//
+//        return new \App\Mail\OrderShipped($order);
+//    });
     //商家信息
     Route::get('shops/index', "ShopsController@index")->name('shops.index');
     Route::any('shops/add', "ShopsController@add")->name('shops.add');
@@ -44,10 +50,27 @@ Route::domain('admin.com')->namespace('Admin')->group(function () {
     Route::any('activity/add', "ActivityController@add")->name('activity.add');
     Route::any('activity/edit/{id}', "ActivityController@edit")->name('activity.edit');
     Route::any('activity/del{id}', "ActivityController@del")->name('activity.del');
+
+    //角色
+    Route::any('role/index', "RoleController@index")->name('role.index');
+    Route::any('role/add', "RoleController@add")->name('role.add');
+    Route::any('role/edit/{id}', "RoleController@edit")->name('role.edit');
+    Route::any('role/del/{id}', "RoleController@del")->name('role.del');
+
+    //权限
+    Route::any('per/index', "PerController@index")->name('per.index');
+    Route::any('per/add', "PerController@add")->name('per.add');
+    Route::any('per/edit/{id}', "PerController@edit")->name('per.edit');
+    Route::any('per/del/{id}', "PerController@del")->name('per.del');
+
+    //导航设置nav
+    Route::any('nav/index', "NavController@index")->name('nav.index');
+    Route::any('nav/add', "NavController@add")->name('nav.add');
+    Route::any('nav/del/{id}', "NavController@del")->name('nav.del');
 });
 
 
-//商户
+//商户平台
 Route::domain('shop.com')->namespace('Shop')->group(function () {
 
     //user表
@@ -70,9 +93,18 @@ Route::domain('shop.com')->namespace('Shop')->group(function () {
     Route::any('menu/edit/{id}', "MenuController@edit")->name('menu.edit');
     Route::any('menu/del/{id}', "MenuController@del")->name('menu.del');
 
-//活动
+//活动查看
     Route::any('activity/show', "ActivityController@show")->name('activity.show');
 
-
+    //订单统计
+    Route::get('order/day', "OrderController@day")->name('order.day');
+//每月统计
+    Route::get('order/month', "OrderController@month")->name('order.month');
+    //订单管理
+    Route::get('order/index', "OrderController@index")->name('order.index');
+    //订单查看
+    Route::get('order/select/{id}', "OrderController@select")->name('order.select');
+    //改变订单状态
+    Route::get('order/change/{id}/{status}', "OrderController@change")->name('order.change');
 });
 

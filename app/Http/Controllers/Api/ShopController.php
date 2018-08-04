@@ -10,11 +10,7 @@ use App\Http\Controllers\Controller;
 
 class ShopController extends Controller
 {
-//    跨域
-    public function __construct()
-    {
-        header('Access-Control-Allow-Origin:*');
-    }
+
     //商家列表
     public function list(Request $request)
     {
@@ -39,7 +35,7 @@ class ShopController extends Controller
         $id = $request->input('id');
 //      dd($id);
         //取出当前店铺信息
-        $shop = Shop::findOrFail($id);
+        $shop = Shop::find($id);
         //添加配送距离和时间字段
         $shop->distance = rand(100, 5000);
         $shop->estimate_time = $shop->distance / 40;
@@ -76,11 +72,12 @@ class ShopController extends Controller
         $cates = MenuCategory::where('shop_id', $id)->get();
         //循环得到当前分类的所有数据
         foreach ($cates as $cate) {
-            $shop->shop_img = "/uploads/" . $shop->shop_img;
+            $shop->shop_img = $shop->shop_img;
             $cate->goods_list = Menu::where('shop_id', $cate->id)->get();
         }
         //把分类数据追加到$shop 里面
         $shop->commodity = $cates;
+//        dd($shop);
         return $shop;
     }
 }
