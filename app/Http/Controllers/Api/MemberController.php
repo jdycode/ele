@@ -67,6 +67,7 @@ class MemberController extends Controller
     {
         //接收数据
         $data = $request->all();
+//        dd($data);
         //验证
         $validate = Validator::make($data, [
             'username' => 'required',

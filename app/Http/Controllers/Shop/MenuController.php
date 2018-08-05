@@ -130,7 +130,7 @@ class MenuController extends Controller
             }
         }
 
-        return view('shop.menu.add', compact('cates', 'menu'));
+        return view('shop.menu.edit', compact('cates', 'menu'));
 
     }
 

@@ -23,7 +23,7 @@ Route::domain('admin.com')->namespace('Admin')->group(function () {
     Route::any('shop_category/edit/{id}', "ShopCategoryController@edit")->name('shop_category.edit');
     Route::any('shop_category/del/{id}', "ShopCategoryController@del")->name('shop_category.del');
 
-    //测试
+//    //测试
 //    Route::get('/mail', function () {
 //        $order =\App\Models\Order::find(26);
 //
@@ -67,7 +67,27 @@ Route::domain('admin.com')->namespace('Admin')->group(function () {
     Route::any('nav/index', "NavController@index")->name('nav.index');
     Route::any('nav/add', "NavController@add")->name('nav.add');
     Route::any('nav/del/{id}', "NavController@del")->name('nav.del');
+
+    //会员表
+    Route::any('member/index', "MemberController@index")->name('member.index');
+    Route::any('member/add', "MemberController@add")->name('member.add');
+    Route::any('member/edit/{id}', "MemberController@edit")->name('member.edit');
+    Route::any('member/del/{id}', "MemberController@del")->name('member.del');
+
+    //活动管理
+    Route::any('event/index', "EventController@index")->name('event.index');
+    Route::any('event/add', "EventController@add")->name('event.add');
+    Route::any('event/edit/{id}', "EventController@edit")->name('event.edit');
+    Route::any('event/del/{id}', "EventController@del")->name('event.del');
+
+    //抽奖活动奖品管理
+    Route::any('prize/index', "EventPrizeController@index")->name('prize.index');
+    Route::any('prize/add', "EventPrizeController@add")->name('prize.add');
+    Route::any('prize/edit/{id}', "EventPrizeController@edit")->name('prize.edit');
+    Route::any('prize/del/{id}', "EventPrizeController@del")->name('prize.del');
 });
+
+
 
 
 //商户平台

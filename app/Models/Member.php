@@ -8,7 +8,7 @@ class Member extends Model
 {
 
  //可以修改的字段
-public  $fillable = ['username','password','tel'];
+public  $fillable = ['username','password','tel','money','jifen'];
 
 public $timestamps='false';
 
