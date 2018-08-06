@@ -171,6 +171,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('activity.show')}}"><i class="fa fa-circle-o"></i> 商家活动</a></li>
+                    <li><a href="{{route('event.index')}}"><i class="fa fa-circle-o"></i> 抽奖活动</a></li>
                     {{--<li class="treeview">--}}
                         {{--<a href="#"><i class="fa fa-circle-o"></i> Level One--}}
                             {{--<span class="pull-right-container">--}}

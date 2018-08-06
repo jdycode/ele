@@ -6,7 +6,7 @@
     <div class="box-header">
             <form action="" method="post" class="form-inline">
                 {{csrf_field()}}
-                <select name="time">
+                <select name="time" class="form-control">
                     <option  value="">选择</option>
                     <option  value="1">未开始的活动</option>
                     <option  value="0">正在进行的活动</option>

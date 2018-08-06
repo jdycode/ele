@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventMembersTable extends Migration
+class CreateEventUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateEventMembersTable extends Migration
      */
     public function up()
     {
-        Schema::create('event_members', function (Blueprint $table) {
+        Schema::create('event_users', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('events_id')->comment('活动id');
-            $table->integer('user_id')->comment('商家帐号id');
+            $table->integer('user_id')->comment('商家id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateEventMembersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_members');
+        Schema::dropIfExists('event_users');
     }
 }

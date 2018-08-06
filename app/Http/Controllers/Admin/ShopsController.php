@@ -88,7 +88,6 @@ class ShopsController extends Controller
            $this->validate($request, [
                 'shop_category_id' => "required",
                 'shop_name' => "required",
-                'shop_img' => "required",
                 'shop_rating' => "required",
                 'brand' => "required",
                 'on_time' => "required",

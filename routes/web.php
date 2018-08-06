@@ -126,5 +126,11 @@ Route::domain('shop.com')->namespace('Shop')->group(function () {
     Route::get('order/select/{id}', "OrderController@select")->name('order.select');
     //改变订单状态
     Route::get('order/change/{id}/{status}', "OrderController@change")->name('order.change');
+
+
+    //活动报名
+    Route::any('event/index', "EventController@index")->name('event.index');
+    Route::any('event/show/{id}', "EventController@show")->name('event.show');
+    Route::any('event/add/{id}', "EventController@add")->name('event.add');
 });
 

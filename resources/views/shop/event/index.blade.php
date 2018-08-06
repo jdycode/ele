@@ -1,10 +1,9 @@
-@extends("layouts.admin.default")
+@extends("layouts.shop.default")
 
-@section("title","抽奖活动列表")
+@section("title","活动列表")
 
 @section("content")
     <div class="container">
-        <a href="{{route('event.add')}}" class="glyphicon glyphicon-plus "></a>
         <table class="table table-bordered table-hover">
             <tr>
                 <th>id</th>
@@ -26,8 +25,7 @@
                     <td>{{$eve->prize_date}}</td>
                     <td>{{$eve->signup_num}}</td>
                     <td>
-                        <a href="{{route('event.edit',$eve)}}" class="glyphicon glyphicon-edit"></a>
-                        <a href="{{route('event.del',$eve)}}" class="glyphicon glyphicon-trash"onclick="return confirm('确定要删除这条数据吗？')"></a>
+                        <a href="{{route('event.show',$eve)}}" class="btn btn-info">查看</a>
                     </td>
                 </tr>
             @endforeach
