@@ -9,6 +9,10 @@ use Illuminate\Routing\Route;
 
 class NavController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin')->except("login");
+    }
     /*
      * 首页展示
      */

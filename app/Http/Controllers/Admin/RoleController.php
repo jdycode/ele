@@ -17,6 +17,10 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin')->except("login");
+    }
     /*
      * 展示
      */
