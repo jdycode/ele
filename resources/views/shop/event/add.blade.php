@@ -1,4 +1,4 @@
-@extends("layouts.admin.default")
+@extends("layouts.shop.default")
 @section("title",'添加抽奖活动')
 @section("content")
     <form class="container" action="" method="post" enctype="multipart/form-data" style="width: fit-content">
