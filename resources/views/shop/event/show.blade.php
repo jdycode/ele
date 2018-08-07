@@ -38,7 +38,7 @@
             <td>
           
                 @if($eve->num < $eve->signup_num)
-                    <a href="{{route('event.add',$eve)}}" class="btn btn-info">报名</a>
+                    <a href="{{route('event.check',$eve)}}" class="btn btn-info">报名</a>
                 @else
                     <a href="" class="btn btn-info">报名人数已满</a>
                 @endif

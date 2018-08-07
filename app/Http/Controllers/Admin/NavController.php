@@ -13,6 +13,7 @@ class NavController extends Controller
     {
         $this->middleware('auth:admin')->except("login");
     }
+
     /*
      * 首页展示
      */
@@ -67,10 +68,10 @@ class NavController extends Controller
     public function del($id)
     {
         //通过id找到单前数据
-        $nav = Nav::where('pid', $id)->get();
-        if (!$nav) {
-            Nav::findOrFail($id)->deleted();
-            return redirect()->route('nav.index')->with('succsse', '删除成功');
-        }
+//        $nav = Nav::where('pid', $id)->get();
+        $nav = Nav::findOrFail($id);
+        $nav->delete();
+        return redirect()->route('nav.index')->with('succsse', '删除成功');
+
     }
 }

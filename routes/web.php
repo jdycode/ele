@@ -129,8 +129,8 @@ Route::domain('shop.com')->namespace('Shop')->group(function () {
 
 
     //活动报名
-    Route::any('event/index', "EventController@index")->name('event.index');
+    Route::any('event/list', "EventController@list")->name('event.list');
     Route::any('event/show/{id}', "EventController@show")->name('event.show');
-    Route::any('event/add/{id}', "EventController@add")->name('event.add');
+    Route::any('event/check/{id}', "EventController@check")->name('event.check');
 });
 

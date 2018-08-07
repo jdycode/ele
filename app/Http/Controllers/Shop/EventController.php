@@ -18,11 +18,11 @@ class EventController extends Controller
      * 首页展示
      */
 
-    public function index()
+    public function list()
     {
         $eves = Event::all();
         //显示视图
-        return view('shop.event.index', compact('eves'));
+        return view('shop.event.list', compact('eves'));
     }
 
     /*
@@ -41,11 +41,11 @@ class EventController extends Controller
      * 活动报名
      */
 
-    public function add(Request $request,$id)
+    public function check(Request $request,$id)
     {
        $eves=EventUser::create(['events_id'=>$id,'user_id'=>Auth::user()->id]);
    if ($eves){
-         return redirect()->route('event.index')->with('success','报名成功');
+         return redirect()->route('event.list')->with('success','报名成功');
    }
     }
 
