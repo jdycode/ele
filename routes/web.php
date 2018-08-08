@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 //管理员平台
@@ -79,6 +79,7 @@ Route::domain('admin.com')->namespace('Admin')->group(function () {
     Route::any('event/add', "EventController@add")->name('event.add');
     Route::any('event/edit/{id}', "EventController@edit")->name('event.edit');
     Route::any('event/del/{id}', "EventController@del")->name('event.del');
+    Route::any('event/open/{id}', "EventController@open")->name('event.open');
 
     //抽奖活动奖品管理
     Route::any('prize/index', "EventPrizeController@index")->name('prize.index');

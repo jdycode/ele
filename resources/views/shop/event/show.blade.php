@@ -36,7 +36,6 @@
         <tr>
             <th>操作</th>
             <td>
-          
                 @if($eve->num < $eve->signup_num)
                     <a href="{{route('event.check',$eve)}}" class="btn btn-info">报名</a>
                 @else

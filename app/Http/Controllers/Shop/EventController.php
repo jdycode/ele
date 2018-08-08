@@ -43,11 +43,12 @@ class EventController extends Controller
 
     public function check(Request $request,$id)
     {
-       $eves=EventUser::create(['events_id'=>$id,'user_id'=>Auth::user()->id]);
-   if ($eves){
-         return redirect()->route('event.list')->with('success','报名成功');
-   }
+       $eves=EventUser::where('events_id',$id)->where('user_id',Auth::user()->id)->first();
+//       dd($eves);
+       if(!$eves){
+          EventUser::create(['events_id'=>$id,'user_id'=>Auth::user()->id]);
+           return redirect()->route('event.list')->with('success','报名成功');
     }
-
-
+        return redirect()->route('event.list')->with('success','你已经报名');
+}
 }

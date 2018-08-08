@@ -30,7 +30,7 @@ class OrderController extends Controller
         //判断地址是否正确
         if ($addr === null) {
             return [
-                'status' => 'false',
+                'status' => "false",
                 'massage' => "地址选择有误"
             ];
         }
@@ -67,7 +67,7 @@ class OrderController extends Controller
 //       return $data;
         //开启事务
         DB::beginTransaction();
-        try{
+        try {
             //创建订单
             $order = Order::create($data);
             //添加订单商品
@@ -85,21 +85,21 @@ class OrderController extends Controller
                 OrderGood::create($dataGoods);
             }
             //清空购物车
-            Cart::where('user_id',$request->post('user_id'))->delete();
+            Cart::where('user_id', $request->post('user_id'))->delete();
             //提交数据
             DB::commit();
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             //回滚
             DB::rollBack();
             //返回数据
             return [
-                'status' =>'false',
-                'massage'=>$exception->getMessage()
+                'status' => "false",
+                'message' => $exception->getMessage()
             ];
         }
         return [
-            'status' => 'true',
-            'massage' => '添加成功',
+            'status' => "true",
+            'message' => '您的订单已生成',
             'order_id' => $order->id
         ];
     }
@@ -149,7 +149,7 @@ class OrderController extends Controller
             $data['order_price'] = $order->total;
             $data['order_address'] = $order->provence . $order->city . $order->area . $order->detail_address;
             $good[] = OrderGood::where('order_id', $order->id)->first();
-            $data['goods_list']= $good;
+            $data['goods_list'] = $good;
             $datas[] = $data;
         }
 
@@ -168,8 +168,8 @@ class OrderController extends Controller
         //判断账户余额
         if ($order->total > $member->money) {
             return [
-                'status' => 'false',
-                'massage' => "你的余额不足"
+                "status" => "false",
+                "message" => "你的余额不足"
             ];
         }
         //付款
@@ -179,8 +179,8 @@ class OrderController extends Controller
         $order->status = 1;
         $order->save();
         return [
-            'status' => 'true',
-            'massage' => "支付成功"
+            "status" => "true",
+            "message" => "支付成功"
         ];
     }
 }

@@ -18,10 +18,10 @@
     @foreach($prs as $pr)
         <tr>
             <td>{{$pr->id}}</td>
-            <td>{{$pr->events_id}}</td>
+            <td>{{$pr->even->title}}</td>
             <td>{{$pr->name}}</td>
             <td>{{$pr->description}}</td>
-            <td></td>
+            <td>{{$pr->users->name}}</td>
             <td>
                 <a href="{{route('prize.edit',$pr)}}" class="glyphicon glyphicon-edit"></a>
                 <a href="{{route('prize.del',$pr)}}" class="glyphicon glyphicon-trash"onclick="return confirm('确定要删除这条数据吗？')"></a>

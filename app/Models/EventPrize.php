@@ -13,4 +13,13 @@ class EventPrize extends Model
     {
         return $this->belongsTo(Event::class);
     }
+
+    public function users(){
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function even()
+    {
+        return $this->belongsTo(Event::class,'events_id');
+    }
 }

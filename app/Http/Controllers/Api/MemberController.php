@@ -83,9 +83,9 @@ class MemberController extends Controller
         if ($validate->fails()) {
 //返回错误信息
             return [
-                'status' => "false",
+                "status" => "false",
                 //得到错误信息
-                'message' => $validate->errors()->first()
+                "message" => $validate->errors()->first()
             ];
         }
         //验证验证码
@@ -95,7 +95,7 @@ class MemberController extends Controller
         if ($code != $data['sms']) {
             //返回错误信息
             return [
-                'status' => 'false',
+                "status" => "false",
                 'message' => "验证码错误"
             ];
         }
@@ -106,8 +106,8 @@ class MemberController extends Controller
         Member::create($data);
         //        //返回信息
         return [
-            'status' => "true",
-            'message' => "注册成功"
+            "status" => "true",
+            "message" => "注册成功"
         ];
     }
 

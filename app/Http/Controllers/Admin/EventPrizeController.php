@@ -83,4 +83,5 @@ class EventPrizeController extends Controller
         //提示并跳转
         return redirect()->route('prize.index')->with('success','删除成功');
 }
+
 }
