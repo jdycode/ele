@@ -176,9 +176,15 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        //云存储
         AliyunOss\Laravel\AliyunOssServiceProvider::class,
+        //编辑器
         Overtrue\LaravelUEditor\UEditorServiceProvider::class,
-        Mrgoon\AliSms\ServiceProvider::class
+        //短信发送
+        Mrgoon\AliSms\ServiceProvider::class,
+        // 中文分词搜索
+        Laravel\Scout\ScoutServiceProvider::class,
+        Vanry\Scout\TNTSearchScoutServiceProvider::class
     ],
 
     /*

@@ -15,6 +15,21 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/order/clear', function () {
+//处理超时未支付的订单
+    /**
+     * 1.找出 超时   未支付   订单
+     * 当前时间-创建时间>15*60
+     * 当前时间-15*60>创建时间
+     * 创建时间<当前时间-15*60
+     * */
+    while (true) {
+        $orders = \App\Models\Order::where("status", 0)->where('created_at', '<', date("Y-m-d H:i:s", (time() - 15 * 60)))->update(['status' => -1]);
+//        sleep(5);
+    }
+});
+
+
 //管理员平台
 Route::domain('admin.com')->namespace('Admin')->group(function () {
     //店铺分类
@@ -73,22 +88,22 @@ Route::domain('admin.com')->namespace('Admin')->group(function () {
     Route::any('member/add', "MemberController@add")->name('member.add');
     Route::any('member/edit/{id}', "MemberController@edit")->name('member.edit');
     Route::any('member/del/{id}', "MemberController@del")->name('member.del');
-
+//region 活动管理
     //活动管理
     Route::any('event/index', "EventController@index")->name('event.index');
     Route::any('event/add', "EventController@add")->name('event.add');
     Route::any('event/edit/{id}', "EventController@edit")->name('event.edit');
     Route::any('event/del/{id}', "EventController@del")->name('event.del');
     Route::any('event/open/{id}', "EventController@open")->name('event.open');
-
-    //抽奖活动奖品管理
+    //endregion
+//region 抽奖活动活动
+    //抽奖活动奖品抽奖活动
     Route::any('prize/index', "EventPrizeController@index")->name('prize.index');
     Route::any('prize/add', "EventPrizeController@add")->name('prize.add');
     Route::any('prize/edit/{id}', "EventPrizeController@edit")->name('prize.edit');
     Route::any('prize/del/{id}', "EventPrizeController@del")->name('prize.del');
+    //endregion
 });
-
-
 
 
 //商户平台
