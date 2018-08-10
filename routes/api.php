@@ -55,6 +55,12 @@ Route::namespace('Api')->group(function () {
     Route::any('orderList/list', 'OrderController@list');
     //订单支付接口
     Route::any('pay/pay', 'OrderController@pay');
+    // 微信支付
+    Route::any('order/wxPay', 'OrderController@wxPay');
+    // 订单状态
+    Route::any('order/status', 'OrderController@status');
+    // 微信异步通知
+    Route::any('order/ok', 'OrderController@ok');
 
 });
 
