@@ -36,9 +36,9 @@ class MemberController extends Controller
         //配置
         //短信发送
         $config = [
-            'access_key' => 'LTAIZB5XDmEyaNfT',
-            'access_secret' => 'oCsoy06A0M9b8Mb52mUeOjTZ9AUE73',
-            'sign_name' => '蒋达勇',
+            'access_key' => '',
+            'access_secret' => '',
+            'sign_name' => '',
         ];
         $aliSms = new AliSms();
         $response = $aliSms->sendSms($tel, 'SMS_140660142', ['code' => $code], $config);
